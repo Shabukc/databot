@@ -1,0 +1,56 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Databot.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sparrow="clr-namespace:Sparrow.Chart;assembly=Sparrow.Chart.WP8.45"
+    xmlns:local="clr-namespace:Databot" 
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Landscape" Orientation="Landscape"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28" RenderTransformOrigin="0.531,1.185" Orientation="Horizontal" >
+            <TextBlock x:Name="appName" Text="Databot" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0,375,0" FontWeight="Bold" FontSize="40"/>
+            <Image x:Name="imgWarn" Source="Assets/warn.gif" Width="40" Height="40" Tap="imgWarn_Tap"  Visibility="Collapsed"  ToolTipService.ToolTip="Warn"  />
+            <Image x:Name="imgMourn" Source="Assets/mourn.gif" Width="40" Height="40" Tap="imgWarn_Tap"  Visibility="Collapsed"  ToolTipService.ToolTip="Mourn" />
+            <Image x:Name="imgWeep" Source="Assets/weep.gif" Width="40" Height="40" Tap="imgWarn_Tap"   Visibility="Collapsed"  ToolTipService.ToolTip="Weep"/>
+            <Image x:Name="imgScream" Source="Assets/shout.gif" Width="40" Height="40"  Tap="imgWarn_Tap"  Visibility="Collapsed"  ToolTipService.ToolTip="Shout"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <!--//Use the viewmodel in the Sparrow Chart-->
+            <sparrow:SparrowChart x:Name="spchart" Margin="0,0,79,0">
+                <sparrow:SparrowChart.DataContext>
+                    <local:ViewModel />
+                </sparrow:SparrowChart.DataContext>
+                <sparrow:SparrowChart.XAxis >
+                    <sparrow:LinearXAxis />
+                </sparrow:SparrowChart.XAxis>
+                <sparrow:SparrowChart.YAxis>
+                    <sparrow:LinearYAxis/>
+                </sparrow:SparrowChart.YAxis>
+                <sparrow:LineSeries PointsSource="{Binding Collection}" XPath="X" YPath="Y"/>
+            </sparrow:SparrowChart>
+        </Grid>
+
+        <Button x:Name="prButton"  Content=">" HorizontalAlignment="Left" Margin="650,265,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Click="PauseRestart" IsEnabled="False" />
+        <Button  x:Name="configButton" Content="..." HorizontalAlignment="Left" Margin="650,206,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66"  Click="Configer" />
+
+    </Grid>
+
+</phone:PhoneApplicationPage>
