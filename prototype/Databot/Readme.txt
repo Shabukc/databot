@@ -22,4 +22,4 @@ Based on the pattern and trend the databot will warn, mourn, shout or scream.
 The data once plotted on the screen, the data is discarded, but the plotted surface is saved as much as possible in a reverse logarithmic fashion, in such a way the recent data plotted has more details and past data is plotted in summary way in relation to time (month, day, week, hour, minute).
 
 Thankx!,
-Mail for more infpat shabukc_at_yahoo.com.
+Mail for more info  shabukc_at_yahoo.com.
